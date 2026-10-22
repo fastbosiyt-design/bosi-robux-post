@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html lang="uz" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>BOSI ROBUX - O'zbekistondagi #1 Robux Mayneri</title>
+  <meta name="description" content="BOSI ROBUX rasmiy sayti. Robux qazish, Yechish (min 1,000 RBX - 20 kunda), 10k konkurs va o'yinlar!">
+  <meta property="og:title" content="BOSI ROBUX">
+  <meta property="og:description" content="Bepul Robux ishlab Roblox akkauntingizga yechib oling!">
+  <meta property="og:url" content="https://bosiiiirobux.vercel.app">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          colors: {
+            brand: {
+              50: '#ecfdf5',
+              400: '#34d399',
+              500: '#10b981',
+              600: '#059669',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #030712;
+      color: #f8fafc;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .robux-glow {
+      box-shadow: 0 0 50px -10px rgba(16, 185, 129, 0.4);
+    }
+    .robux-glow-btn:active {
+      transform: scale(0.94);
+    }
+    @keyframes floatUp {
+      0% { opacity: 1; transform: translateY(0) scale(1); }
+      100% { opacity: 0; transform: translateY(-70px) scale(1.3); }
+    }
+    .float-coin {
+      position: absolute;
+      pointer-events: none;
+      animation: floatUp 0.8s ease-out forwards;
+      font-weight: 800;
+      color: #34d399;
+      text-shadow: 0 2px 10px rgba(16, 185, 129, 0.8);
+      z-index: 50;
+    }
+    @keyframes chestShake {
+      0%, 100% { transform: rotate(0deg) scale(1); }
+      20% { transform: rotate(-10deg) scale(1.08) translateY(-4px); }
+      40% { transform: rotate(10deg) scale(1.12) translateY(-6px); }
+      60% { transform: rotate(-8deg) scale(1.15) translateY(-6px); }
+      80% { transform: rotate(8deg) scale(1.08) translateY(-2px); }
+    }
+    @keyframes chestBurst {
+      0% { transform: scale(0.6) translateY(20px); opacity: 0; }
+      50% { transform: scale(1.15) translateY(-8px); opacity: 1; }
+      100% { transform: scale(1) translateY(0); opacity: 1; }
+    }
+    @keyframes coinSpin3D {
+      0% { transform: perspective(600px) rotateY(0deg) scale(1); }
+      50% { transform: perspective(600px) rotateY(900deg) scale(1.2); }
+      100% { transform: perspective(600px) rotateY(1800deg) scale(1); }
+    }
+    @keyframes modalPop {
+      0% { transform: scale(0.92) translateY(8px); opacity: 0; }
+      100% { transform: scale(1) translateY(0); opacity: 1; }
+    }
+    .animate-chest-shake {
+      animation: chestShake 0.8s infinite ease-in-out;
+    }
+    .animate-chest-burst {
+      animation: chestBurst 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    }
+    .animate-coin-spin {
+      animation: coinSpin3D 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    }
+    .animate-modal-pop {
+      animation: modalPop 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col font-sans antialiased overflow-x-hidden">
+
+  <!-- TOP HEADER -->
+  <header class="sticky top-0 z-40 w-full border-b border-slate-800/80 bg-slate-950/90 backdrop-blur-md">
+    <div class="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between">
+      <div class="flex items-center gap-2.5">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-400 to-emerald-600 flex items-center justify-center text-slate-950 font-black text-xl shadow-lg shadow-emerald-500/25">
+          R$
+        </div>
+        <div>
+          <h1 class="text-lg font-black tracking-tight text-white flex items-center gap-1.5 leading-none">
+            BOSI ROBUX
+            <span class="text-[10px] bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 px-1.5 py-0.5 rounded font-mono font-bold">24/7</span>
+          </h1>
+        </div>
+      </div>
+
+      <!-- Balance Badge & Sound -->
+      <div class="flex items-center gap-2">
+        <button onclick="toggleAudio()" id="soundBtn" class="p-2 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 hover:text-white transition">
+          🔊
+        </button>
+        <button onclick="openWithdrawModal()" class="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 hover:border-emerald-500/60 transition group">
+          <span class="text-xs font-bold text-slate-400 group-hover:text-emerald-400">Balans:</span>
+          <span id="headerBalance" class="text-sm font-black font-mono text-emerald-400">0.00</span>
+          <span class="text-xs text-emerald-300 font-black">R$</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- USER ROBLOX STATUS BAR -->
+  <div class="bg-slate-900/60 border-b border-slate-800/60 px-4 py-2">
+    <div class="max-w-4xl mx-auto flex items-center justify-between text-xs">
+      <div class="flex items-center gap-2" id="userAccountSection">
+        <img id="userAvatarImg" src="https://api.dicebear.com/7.x/bottts/svg?seed=bosi&backgroundColor=0f172a" class="w-6 h-6 rounded-full border border-slate-700 object-cover" alt="Avatar">
+        <span class="text-slate-400">Roblox:</span>
+        <span id="userRobloxName" class="font-bold text-slate-200">Bog'lanmagan</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <button onclick="openWithdrawModal()" class="text-xs bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-2.5 py-1 rounded-lg transition shadow-sm">
+          🏧 Yechish (1,000+ RBX)
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN VIEWPORT -->
+  <main class="flex-1 max-w-4xl w-full mx-auto p-4 flex flex-col gap-4">
+
+    <!-- NAVIGATION TABS -->
+    <div class="grid grid-cols-5 gap-1 bg-slate-900/80 p-1 rounded-2xl border border-slate-800">
+      <button onclick="switchTab('game')" id="tab-game" class="py-2 rounded-xl text-[11px] sm:text-xs font-extrabold transition bg-emerald-500 text-slate-950 shadow-md">
+        🎮 O'yin
+      </button>
+      <button onclick="switchTab('shop')" id="tab-shop" class="py-2 rounded-xl text-[11px] sm:text-xs font-extrabold transition text-slate-400 hover:text-white">
+        🛒 Do'kon
+      </button>
+      <button onclick="switchTab('top10')" id="tab-top10" class="py-2 rounded-xl text-[11px] sm:text-xs font-extrabold transition text-slate-400 hover:text-amber-400">
+        🏆 Top 10
+      </button>
+      <button onclick="switchTab('minigames')" id="tab-minigames" class="py-2 rounded-xl text-[11px] sm:text-xs font-extrabold transition text-slate-400 hover:text-white">
+        🎲 O'yinlar
+      </button>
+      <button onclick="switchTab('giveaway')" id="tab-giveaway" class="py-2 rounded-xl text-[11px] sm:text-xs font-extrabold transition text-slate-400 hover:text-white">
+        🎁 10k
+      </button>
+    </div>
+
+    <!-- TAB 1: TAP GAME -->
+    <section id="view-game" class="flex-1 flex flex-col items-center justify-center py-4">
+      <!-- Balance Card -->
+      <div class="w-full max-w-md bg-gradient-to-b from-slate-900 to-slate-950 border border-slate-800 rounded-3xl p-5 text-center relative overflow-hidden shadow-xl mb-6">
+        <div class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">Mavjud Robux Balansi</div>
+        <div class="flex items-center justify-center gap-2 my-2">
+          <span class="text-3xl font-black text-emerald-400 font-mono tracking-tight" id="mainBalanceDisplay">0.00</span>
+          <span class="text-xl font-black text-emerald-300">ROBUX</span>
+        </div>
+        <div class="flex items-center justify-center gap-3 text-xs text-slate-400 font-medium">
+          <span class="flex items-center gap-1">⚡ Har bosish: <b class="text-emerald-400 font-mono font-bold" id="tapPowerDisplay">+0.10 RBX</b></span>
+          <span>•</span>
+          <span class="flex items-center gap-1">⛏️ Avto-miner: <b class="text-emerald-400 font-mono font-bold" id="autoRateDisplay">0.0/s</b></span>
+        </div>
+      </div>
+
+      <!-- BIG ROBUX TAP BUTTON -->
+      <div class="relative flex items-center justify-center my-4">
+        <div id="tapGlow" class="absolute w-64 h-64 rounded-full bg-emerald-500/15 blur-2xl pointer-events-none"></div>
+        <button id="tapBtn" onclick="handleTap(event)" class="relative w-56 h-56 sm:w-64 sm:h-64 rounded-full bg-gradient-to-tr from-emerald-600 via-emerald-500 to-emerald-400 p-3 shadow-2xl robux-glow robux-glow-btn cursor-pointer transition-transform duration-75 select-none focus:outline-none">
+          <div class="w-full h-full rounded-full bg-slate-950/85 border-4 border-emerald-400/40 flex flex-col items-center justify-center text-center p-4 backdrop-blur-sm">
+            <span class="text-6xl sm:text-7xl font-black text-emerald-400 drop-shadow-md tracking-tighter">R$</span>
+            <span class="text-xs font-black uppercase tracking-wider text-emerald-300 mt-2 bg-emerald-950/80 px-3 py-1 rounded-full border border-emerald-500/40">BOS VA YUT</span>
+          </div>
+        </button>
+      </div>
+
+      <!-- Energy Bar -->
+      <div class="w-full max-w-md mt-6 bg-slate-900 border border-slate-800 rounded-2xl p-4">
+        <div class="flex justify-between text-xs font-bold mb-2">
+          <span class="text-slate-400 flex items-center gap-1">⚡ Energiya:</span>
+          <span class="text-emerald-400 font-mono" id="energyText">1000 / 1000</span>
+        </div>
+        <div class="w-full h-3 bg-slate-950 rounded-full overflow-hidden p-0.5 border border-slate-800">
+          <div id="energyBar" class="h-full bg-gradient-to-r from-emerald-500 to-emerald-400 rounded-full transition-all duration-200" style="width: 100%"></div>
+        </div>
+      </div>
+
+      <!-- Bottom Quick Actions -->
+      <div class="grid grid-cols-2 gap-3 w-full max-w-md mt-4">
+        <button onclick="openWithdrawModal()" class="py-3 px-4 rounded-xl bg-gradient-to-r from-emerald-600 to-emerald-500 text-white font-extrabold text-sm shadow-lg shadow-emerald-600/20 hover:opacity-95 transition flex items-center justify-center gap-2">
+          🏧 Robux Yechish
+        </button>
+        <button onclick="switchTab('giveaway')" class="py-3 px-4 rounded-xl bg-slate-900 border border-slate-800 text-slate-200 font-extrabold text-sm hover:border-slate-700 transition flex items-center justify-center gap-2">
+          🎁 10,000 R$ Konkurs
+        </button>
+      </div>
+    </section>
+
+    <!-- TAB 2: SHOP (2x Upgrades) -->
+    <section id="view-shop" class="hidden flex-1 flex flex-col gap-4">
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4">
+        <h2 class="text-base font-extrabold text-white flex items-center gap-2">
+          🛒 Robux Kuchaytirish Do'koni
+        </h2>
+        <p class="text-xs text-slate-400 mt-1">
+          Har bosganda ko'proq Robux beradigan darajani sotib oling. Har bir xariddan so'ng narx va beradigan Robux miqdori 2x ko'payadi!
+        </p>
+      </div>
+
+      <!-- Upgrade 1: Tap Multiplier (100 RBX -> 0.2 RBX, 200 RBX -> 0.4 RBX...) -->
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div class="flex items-center gap-3">
+          <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-2xl">
+            ⚡
+          </div>
+          <div>
+            <h3 class="font-extrabold text-white text-sm">
+              Tap Kuchaytirgich (<span id="shopTapLvl">1</span>-daraja)
+            </h3>
+            <p class="text-xs text-slate-400 mt-0.5">
+              Hozirgi quvvat: <b class="text-emerald-400 font-mono" id="shopCurrentTap">+0.10 RBX</b> / tap
+            </p>
+            <p class="text-xs text-emerald-300 font-medium">
+              Keyingi daraja: <b class="font-mono" id="shopNextTap">+0.20 RBX</b> / tap (2x ko'proq!)
+            </p>
+          </div>
+        </div>
+        <button onclick="buyTapUpgrade()" class="bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold px-4 py-2.5 rounded-xl text-xs transition shadow-md whitespace-nowrap flex items-center justify-center gap-1.5">
+          <span>Sotib olish:</span>
+          <span id="shopTapPrice" class="font-mono">100</span>
+          <span>RBX</span>
+        </button>
+      </div>
+
+      <!-- Upgrade 2: Auto Miner -->
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div class="flex items-center gap-3">
+          <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-2xl">
+            🤖
+          </div>
+          <div>
+            <h3 class="font-extrabold text-white text-sm">
+              Avtomatik Robux Qazuvchi Bot
+            </h3>
+            <p class="text-xs text-slate-400 mt-0.5">
+              Siz o'yinda bo'lmasangiz ham passiv Robux ishlab turadi (+0.5 RBX / soniya).
+            </p>
+          </div>
+        </div>
+        <button onclick="buyAutoMiner()" class="bg-cyan-600 hover:bg-cyan-500 text-white font-extrabold px-4 py-2.5 rounded-xl text-xs transition shadow-md whitespace-nowrap flex items-center justify-center gap-1.5">
+          <span>Sotib olish:</span>
+          <span class="font-mono">250</span>
+          <span>RBX</span>
+        </button>
+      </div>
+
+      <!-- Upgrade 3: Energy Max Boost -->
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div class="flex items-center gap-3">
+          <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-2xl">
+            🔋
+          </div>
+          <div>
+            <h3 class="font-extrabold text-white text-sm">
+              Maksimal Energiya Sig'imi (+1000)
+            </h3>
+            <p class="text-xs text-slate-400 mt-0.5">
+              Energiyani 1000 dan 2000 ga oshiradi, ko'proq tap qilish imkoniyati!
+            </p>
+          </div>
+        </div>
+        <button onclick="buyMaxEnergy()" class="bg-amber-600 hover:bg-amber-500 text-white font-extrabold px-4 py-2.5 rounded-xl text-xs transition shadow-md whitespace-nowrap flex items-center justify-center gap-1.5">
+          <span>Sotib olish:</span>
+          <span class="font-mono">150</span>
+          <span>RBX</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- TAB 3: MINIGAMES -->
+    <section id="view-minigames" class="hidden flex-1 flex flex-col gap-4">
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4">
+        <h2 class="text-base font-extrabold text-white flex items-center gap-2">
+          🎲 Robuxli Mini O'yinlar
+        </h2>
+        <p class="text-xs text-slate-400 mt-1">
+          Robux tiking va o'ynang. Yutsangiz balansingizga darhol 2x - 5x Robux qo'shiladi!
+        </p>
+      </div>
+
+      <!-- Game 1: Coinflip -->
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-4">
+        <div class="flex items-center justify-between mb-3">
+          <h3 class="font-extrabold text-white text-sm flex items-center gap-2">
+            🪙 Coinflip (Burgut yoki Gerb)
+          </h3>
+          <span class="text-xs font-mono bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded font-bold">2X Yutuq</span>
+        </div>
+        <p class="text-xs text-slate-400 mb-2">Tikish miqdorini tanlang va tangani aylantiring:</p>
+        
+        <!-- Animated 3D Coin Preview -->
+        <div class="flex justify-center my-3">
+          <div id="coinGraphic" class="w-16 h-16 rounded-full border-4 border-amber-400 bg-gradient-to-br from-amber-500 to-amber-900 flex items-center justify-center text-3xl shadow-lg shadow-amber-500/20">
+            🪙
+          </div>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-2 mb-3 justify-center">
+          <button onclick="playCoinflip(10)" class="px-3.5 py-1.5 rounded-lg bg-slate-800 hover:bg-emerald-600 text-xs font-mono font-bold text-white transition active:scale-95">10 RBX</button>
+          <button onclick="playCoinflip(50)" class="px-3.5 py-1.5 rounded-lg bg-slate-800 hover:bg-emerald-600 text-xs font-mono font-bold text-white transition active:scale-95">50 RBX</button>
+          <button onclick="playCoinflip(100)" class="px-3.5 py-1.5 rounded-lg bg-slate-800 hover:bg-emerald-600 text-xs font-mono font-bold text-white transition active:scale-95">100 RBX</button>
+          <button onclick="playCoinflip(500)" class="px-3.5 py-1.5 rounded-lg bg-slate-800 hover:bg-emerald-600 text-xs font-mono font-bold text-white transition active:scale-95">500 RBX</button>
+        </div>
+        <div id="coinflipResult" class="text-xs text-center text-slate-300 font-medium min-h-[20px]"></div>
+      </div>
+
+      <!-- Game 2: Lucky Chests -->
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-4">
+        <div class="flex items-center justify-between mb-3">
+          <h3 class="font-extrabold text-white text-sm flex items-center gap-2">
+            📦 Sirli Sandiqlar (3 tadan 1 tasini tanlang)
+          </h3>
+          <span class="text-xs font-mono bg-purple-500/20 text-purple-400 px-2 py-0.5 rounded font-bold">3X Yutuq</span>
+        </div>
+        <p class="text-xs text-slate-400 mb-3">Tikish: <b>25 RBX</b>. 1 ta sandiqda katta yutuq yashiringan!</p>
+        <div class="grid grid-cols-3 gap-3">
+          <button id="chestBtn1" onclick="playChest(1)" class="py-4 rounded-xl bg-slate-950 border border-slate-800 hover:border-amber-400 text-3xl transition flex flex-col items-center justify-center cursor-pointer active:scale-95">
+            <span id="chestIcon1">🎁</span>
+            <span id="chestSub1" class="text-[10px] text-slate-400 font-bold mt-1">1-Sandiq</span>
+          </button>
+          <button id="chestBtn2" onclick="playChest(2)" class="py-4 rounded-xl bg-slate-950 border border-slate-800 hover:border-amber-400 text-3xl transition flex flex-col items-center justify-center cursor-pointer active:scale-95">
+            <span id="chestIcon2">🎁</span>
+            <span id="chestSub2" class="text-[10px] text-slate-400 font-bold mt-1">2-Sandiq</span>
+          </button>
+          <button id="chestBtn3" onclick="playChest(3)" class="py-4 rounded-xl bg-slate-950 border border-slate-800 hover:border-amber-400 text-3xl transition flex flex-col items-center justify-center cursor-pointer active:scale-95">
+            <span id="chestIcon3">🎁</span>
+            <span id="chestSub3" class="text-[10px] text-slate-400 font-bold mt-1">3-Sandiq</span>
+          </button>
+        </div>
+        <div id="chestResult" class="text-xs text-center text-slate-300 font-medium min-h-[20px] mt-3"></div>
+      </div>
+    </section>
+
+    <!-- TAB 4: GIVEAWAY (10k Konkurs) -->
+    <section id="view-giveaway" class="hidden flex-1 flex flex-col gap-4">
+      <div class="bg-gradient-to-br from-purple-950/60 to-slate-900 border border-purple-500/30 rounded-2xl p-5 text-center relative overflow-hidden">
+        <div class="inline-block bg-purple-500/20 text-purple-300 border border-purple-500/40 text-xs font-bold px-3 py-1 rounded-full mb-3">
+          🎉 Haftalik Katta Konkurs
+        </div>
+        <h2 class="text-2xl font-black text-white tracking-tight">
+          Har Yakshanba Soat 20:00 da
+        </h2>
+        <p class="text-emerald-400 font-mono font-black text-xl my-2">
+          Tasodifiy 3 ta odamga 10,000 Robuxdan! (Jami 30,000 RBX)
+        </p>
+        <p class="text-xs text-slate-300 max-w-md mx-auto mt-2 leading-relaxed">
+          Saytda faol bo'lgan va Telegram kanallarimizga a'zo bo'lgan tasodifiy 3 ta ishtirokchi har hafta yakshanba kuni soat 20:00 da 10,000 Robuxlik yutuqqa ega bo'ladi.
+        </p>
+      </div>
+
+      <!-- Sponsor Channels -->
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4">
+        <h3 class="text-sm font-extrabold text-white mb-2">📢 Majburiy Homiy Kanallar:</h3>
+        <div class="flex flex-col gap-2">
+          <a href="https://t.me/fastabbos_chat" target="_blank" class="flex items-center justify-between p-3 rounded-xl bg-slate-950 border border-slate-800 hover:border-emerald-500 transition">
+            <span class="text-xs font-bold text-slate-200">1. fastabbos_chat</span>
+            <span class="text-xs text-emerald-400 font-bold">A'zo bo'lish ↗</span>
+          </a>
+          <a href="https://t.me/BOSI_TEKIN_ROBUX" target="_blank" class="flex items-center justify-between p-3 rounded-xl bg-slate-950 border border-slate-800 hover:border-emerald-500 transition">
+            <span class="text-xs font-bold text-slate-200">2. BOSI_TEKIN_ROBUX</span>
+            <span class="text-xs text-emerald-400 font-bold">A'zo bo'lish ↗</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Winners List -->
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4">
+        <h3 class="text-sm font-extrabold text-white mb-3">🏆 O'tgan Yakshanba G'oliblari (10,000 RBX):</h3>
+        <div class="space-y-2 text-xs">
+          <div class="flex items-center justify-between p-2.5 rounded-lg bg-slate-950 border border-slate-800">
+            <span class="font-bold text-slate-200">🥇 ProGamer_Uz (Roblox)</span>
+            <span class="font-mono text-emerald-400 font-bold">+10,000 RBX (To'landi)</span>
+          </div>
+          <div class="flex items-center justify-between p-2.5 rounded-lg bg-slate-950 border border-slate-800">
+            <span class="font-bold text-slate-200">🥈 Abbosbek_777 (Roblox)</span>
+            <span class="font-mono text-emerald-400 font-bold">+10,000 RBX (To'landi)</span>
+          </div>
+          <div class="flex items-center justify-between p-2.5 rounded-lg bg-slate-950 border border-slate-800">
+            <span class="font-bold text-slate-200">🥉 Samandar_King (Roblox)</span>
+            <span class="font-mono text-emerald-400 font-bold">+10,000 RBX (To'landi)</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB: TOP 10 LEADERBOARD -->
+    <section id="view-top10" class="hidden flex-1 flex flex-col gap-3">
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 flex items-center justify-between">
+        <div>
+          <h2 class="text-base font-extrabold text-white flex items-center gap-2">
+            🏆 TOP 10 CHEMPIONLAR
+          </h2>
+          <p class="text-xs text-slate-400 mt-0.5">
+            BOSI ROBUX eng ko'p Robux qazigan o'yinchilari
+          </p>
+        </div>
+        <button onclick="loadTop10()" class="text-xs text-amber-400 font-bold bg-amber-500/10 border border-amber-500/20 px-3 py-1.5 rounded-xl hover:bg-amber-500/20 transition flex items-center gap-1">
+          🔄 Yangilash
+        </button>
+      </div>
+
+      <div id="top10ListContainer" class="space-y-2">
+        <div class="text-center py-8 text-slate-400 text-xs">Reyting yuklanmoqda...</div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ======================================================== -->
+  <!-- MODAL: ROBUX YECHISH (WITHDRAW)                          -->
+  <!-- ======================================================== -->
+  <div id="withdrawModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-slate-900 border border-slate-800 w-full max-w-md rounded-3xl p-5 shadow-2xl relative">
+      <button onclick="closeWithdrawModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-xl">✕</button>
+
+      <div class="flex items-center gap-2 mb-4">
+        <div class="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold">🏧</div>
+        <h2 class="text-base font-extrabold text-white">Robux Yechib Olish</h2>
+      </div>
+
+      <!-- STEP 1: ROBLOX NICKNAME KIRITISH -->
+      <div id="wStep1" class="flex flex-col gap-3">
+        <p class="text-xs text-slate-300">
+          Robux qaysi Roblox akkauntiga tushishi kerak? Roblox nikini kiriting:
+        </p>
+        <div>
+          <label class="block text-[11px] font-bold text-slate-400 uppercase mb-1">Roblox Username (Login)</label>
+          <input type="text" id="robloxInputNick" placeholder="Masalan: BuilderMan" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2.5 text-sm text-white placeholder-slate-600 focus:outline-none focus:border-emerald-500">
+        </div>
+        <div class="bg-slate-950/60 p-3 rounded-xl border border-slate-800/80 text-[11px] text-slate-400">
+          ⚠️ Parol aslo so'ralmaydi! Faqat o'yinchining to'g'ri niki kerak.
+        </div>
+        <button onclick="searchRobloxAvatar()" class="w-full py-3 bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-xs rounded-xl transition shadow-md flex items-center justify-center gap-2">
+          🔍 Akkauntni Qidirish va Tasdiqlash
+        </button>
+      </div>
+
+      <!-- STEP 2: AVATAR TEKSHIRUVI ("SHUMI SIZNING AKKAUNTINGIZ?") -->
+      <div id="wStep2" class="hidden flex flex-col items-center text-center gap-3 py-2">
+        <div class="text-xs font-bold text-emerald-400 uppercase tracking-wider">Akkaunt Topildi!</div>
+        <div class="relative w-24 h-24 rounded-2xl bg-slate-950 border-2 border-emerald-500 p-1 overflow-hidden shadow-lg">
+          <img id="foundAvatarImg" src="" class="w-full h-full object-cover rounded-xl" alt="Roblox Avatar">
+        </div>
+        <div>
+          <div class="text-base font-extrabold text-white" id="foundNickDisplay">Username</div>
+          <div class="text-xs text-slate-400">Roblox O'yinchisi</div>
+        </div>
+
+        <div class="bg-amber-500/10 border border-amber-500/30 rounded-xl p-3 text-xs text-amber-300 text-left w-full">
+          ❓ <b>Rasmga qarang: Shu sizning Roblox akkauntingizmi?</b>
+          Agar to'g'ri bo'lsa "Ha, bu men" tugmasini bosing.
+        </div>
+
+        <div class="grid grid-cols-2 gap-2 w-full mt-1">
+          <button onclick="backToStep1()" class="py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold text-xs rounded-xl transition">
+            Yo'q, boshqa nik
+          </button>
+          <button onclick="confirmAvatarSuccess()" class="py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-xs rounded-xl transition shadow-md">
+            ✅ Ha, bu men!
+          </button>
+        </div>
+      </div>
+
+      <!-- STEP 3: MIQDOR TANLASH VA 20 KUNLIK MUDDAT OGOHLANTIRISHI -->
+      <div id="wStep3" class="hidden flex flex-col gap-3">
+        <!-- 20 Days Notice Banner -->
+        <div class="bg-blue-500/10 border border-blue-500/30 rounded-xl p-3 text-xs text-blue-300 leading-relaxed">
+          ⏳ <b>Muhim eslatma:</b> Minimum yechish <b>1,000 Robux</b>, maksimum <b>100,000,000 Robux</b>.
+          <br>
+          Misol: agar 1,000 Robux yechsangiz, Roblox Group Payout orqali <b>20 kunda tushadi!</b>
+        </div>
+
+        <div>
+          <div class="flex justify-between text-xs font-bold text-slate-400 mb-1">
+            <span>Yechish Miqdori:</span>
+            <span>Mavjud: <b class="text-emerald-400 font-mono" id="modalUserBalance">0.00</b> RBX</span>
+          </div>
+          <input type="number" id="withdrawAmountInput" min="1000" max="100000000" value="1000" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2.5 text-base font-mono text-emerald-400 focus:outline-none focus:border-emerald-500 font-bold">
+        </div>
+
+        <!-- Quick Amount Buttons -->
+        <div class="grid grid-cols-4 gap-1.5">
+          <button onclick="setWAmount(1000)" class="py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-mono font-bold text-white transition">1k</button>
+          <button onclick="setWAmount(5000)" class="py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-mono font-bold text-white transition">5k</button>
+          <button onclick="setWAmount(10000)" class="py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-mono font-bold text-white transition">10k</button>
+          <button onclick="setWAmount(50000)" class="py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-mono font-bold text-white transition">50k</button>
+        </div>
+
+        <div id="withdrawErrorMsg" class="text-xs text-rose-400 font-medium"></div>
+
+        <button onclick="submitFinalWithdraw()" class="w-full py-3 bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-xs rounded-xl transition shadow-lg shadow-emerald-600/30">
+          🚀 Yechishga Ariza Berish
+        </button>
+      </div>
+
+      <!-- STEP 4: ARIZA MUVAFFAQIYATLI BERILDI -->
+      <div id="wStep4" class="hidden flex flex-col items-center text-center gap-3 py-4">
+        <div class="w-16 h-16 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-3xl">
+          ✓
+        </div>
+        <h3 class="text-base font-extrabold text-white">Arizangiz qabul qilindi!</h3>
+        <p class="text-xs text-slate-300 max-w-xs" id="wSuccessText">
+          Robux 20 kunda Roblox guruhingiz orqali akkauntingizga tushiriladi.
+        </p>
+        <button onclick="closeWithdrawModal()" class="w-full py-2.5 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl mt-2 transition">
+          Yopish
+        </button>
+      </div>
+
+      <!-- RECENT WITHDRAWALS LIST -->
+      <div class="mt-4 pt-3 border-t border-slate-800">
+        <div class="text-[11px] font-bold text-slate-400 mb-2">Oxirgi Yechish Arizalaringiz:</div>
+        <div id="myWithdrawalsList" class="space-y-1.5 max-h-28 overflow-y-auto text-xs text-slate-300">
+          <div class="text-[11px] text-slate-500 italic">Hali arizalar berilmagan</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="mt-auto border-t border-slate-900 bg-slate-950 py-3 px-4 text-center text-xs text-slate-500">
+    <div class="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
+      <div>© 2026 <b>BOSI ROBUX</b> • O'zbekistondagi #1 Robux Mayneri</div>
+      <div class="flex items-center gap-3">
+        <a href="https://t.me/BOSI_tekin_robuxbot" target="_blank" class="hover:text-emerald-400 transition">@BOSI_tekin_robuxbot</a>
+        <span>•</span>
+        <a href="https://t.me/fastabbos_chat" target="_blank" class="hover:text-emerald-400 transition">fastabbos_chat</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    // State
+    const STATE_KEY = 'bosiiii_robux_state_v3';
+    let state = {
+      balance: 0.00, // Hard difficulty: starts strictly at 0.00 RBX
+      tapPower: 0.10, // Strictly 0.10 RBX per tap
+      tapLevel: 1,
+      tapPrice: 100, // 100 RBX for next level (+0.20 RBX)
+      energy: 500,
+      maxEnergy: 500,
+      autoRate: 0,
+      robloxUser: null,
+      withdrawals: [],
+    };
+
+    // Load State
+    try {
+      const saved = localStorage.getItem(STATE_KEY);
+      if (saved) {
+        state = Object.assign(state, JSON.parse(saved));
+      }
+    } catch(e) {}
+
+    function saveState() {
+      try {
+        localStorage.setItem(STATE_KEY, JSON.stringify(state));
+      } catch(e) {}
+    }
+
+    // Audio Synthesizer (Zero External Dependencies)
+    let audioCtx = null;
+    let audioEnabled = true;
+
+    function getAudioCtx() {
+      if (!audioCtx && typeof window !== 'undefined') {
+        const AudioClass = window.AudioContext || window.webkitAudioContext;
+        if (AudioClass) audioCtx = new AudioClass();
+      }
+      if (audioCtx && audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      return audioCtx;
+    }
+
+    function playBeep(freq, type, duration, gainLevel = 0.15) {
+      if (!audioEnabled) return;
+      try {
+        const ctx = getAudioCtx();
+        if (!ctx) return;
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, ctx.currentTime);
+        gain.gain.setValueAtTime(gainLevel, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + duration);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start();
+        osc.stop(ctx.currentTime + duration);
+      } catch(e) {}
+    }
+
+    function soundTap() {
+      playBeep(480 + (state.tapLevel * 20), 'sine', 0.08, 0.2);
+    }
+    function soundWin() {
+      playBeep(523, 'triangle', 0.1, 0.25);
+      setTimeout(() => playBeep(659, 'triangle', 0.12, 0.25), 100);
+      setTimeout(() => playBeep(784, 'triangle', 0.25, 0.3), 200);
+    }
+    function soundUpgrade() {
+      playBeep(440, 'triangle', 0.1);
+      setTimeout(() => playBeep(880, 'triangle', 0.2), 120);
+    }
+    function soundError() {
+      playBeep(180, 'sawtooth', 0.2, 0.2);
+    }
+    function soundWithdraw() {
+      playBeep(350, 'sine', 0.1);
+      setTimeout(() => playBeep(700, 'sine', 0.3), 120);
+    }
+
+    function toggleAudio() {
+      audioEnabled = !audioEnabled;
+      document.getElementById('soundBtn').textContent = audioEnabled ? '🔊' : '🔇';
+    }
+
+    // UI Updates
+    function updateUI() {
+      const balStr = state.balance.toFixed(2);
+      document.getElementById('headerBalance').textContent = balStr;
+      document.getElementById('mainBalanceDisplay').textContent = balStr;
+      document.getElementById('tapPowerDisplay').textContent = `+${state.tapPower.toFixed(2)} RBX`;
+      document.getElementById('autoRateDisplay').textContent = `${state.autoRate.toFixed(1)}/s`;
+      document.getElementById('energyText').textContent = `${Math.floor(state.energy)} / ${state.maxEnergy}`;
+      document.getElementById('energyBar').style.width = `${Math.max(0, Math.min(100, (state.energy / state.maxEnergy) * 100))}%`;
+
+      // Shop UI
+      document.getElementById('shopTapLvl').textContent = state.tapLevel;
+      document.getElementById('shopCurrentTap').textContent = `+${state.tapPower.toFixed(2)} RBX`;
+      document.getElementById('shopNextTap').textContent = `+${(state.tapPower * 2).toFixed(2)} RBX`;
+      document.getElementById('shopTapPrice').textContent = state.tapPrice;
+
+      // Roblox profile bar
+      if (state.robloxUser) {
+        document.getElementById('userRobloxName').textContent = state.robloxUser.username;
+        document.getElementById('userAvatarImg').src = state.robloxUser.avatarUrl;
+      }
+
+      renderWithdrawalsList();
+    }
+
+    // Energy Refill Loop (Hard difficulty: 0.5/sec)
+    setInterval(() => {
+      let changed = false;
+      if (state.energy < state.maxEnergy) {
+        state.energy = Math.min(state.maxEnergy, state.energy + 0.5);
+        changed = true;
+      }
+      if (state.autoRate > 0) {
+        state.balance += state.autoRate;
+        changed = true;
+      }
+      if (changed) {
+        updateUI();
+        saveState();
+      }
+    }, 1000);
+
+    // TAP HANDLER
+    function handleTap(event) {
+      if (state.energy < 1) {
+        soundError();
+        return;
+      }
+      state.energy -= 1;
+      state.balance += state.tapPower;
+      soundTap();
+
+      // Floating text effect
+      const rect = event.currentTarget.getBoundingClientRect();
+      const x = event.clientX || (rect.left + rect.width / 2);
+      const y = event.clientY || (rect.top + rect.height / 2);
+
+      const floatEl = document.createElement('div');
+      floatEl.className = 'float-coin';
+      floatEl.textContent = `+${state.tapPower.toFixed(2)} R$`;
+      floatEl.style.left = `${x - 20}px`;
+      floatEl.style.top = `${y - 30}px`;
+      document.body.appendChild(floatEl);
+
+      setTimeout(() => {
+        if (floatEl.parentNode) floatEl.parentNode.removeChild(floatEl);
+      }, 800);
+
+      updateUI();
+      saveState();
+    }
+
+    // SHOP UPGRADE (2x MULTIPLIER)
+    function buyTapUpgrade() {
+      if (state.balance < state.tapPrice) {
+        soundError();
+        alert(`Mablag' yetarli emas! Sizga ${state.tapPrice} Robux kerak.`);
+        return;
+      }
+      state.balance -= state.tapPrice;
+      state.tapPower = Number((state.tapPower * 2).toFixed(2));
+      state.tapPrice = state.tapPrice * 2;
+      state.tapLevel += 1;
+      soundUpgrade();
+      updateUI();
+      saveState();
+      alert(`Tabriklaymiz! Endi har bosishda +${state.tapPower.toFixed(2)} RBX olasiz!`);
+    }
+
+    function buyAutoMiner() {
+      const price = 250;
+      if (state.balance < price) {
+        soundError();
+        alert(`Mablag' yetarli emas! Narxi: ${price} Robux`);
+        return;
+      }
+      state.balance -= price;
+      state.autoRate += 0.5;
+      soundUpgrade();
+      updateUI();
+      saveState();
+      alert(`Avto-miner sotib olindi! Har soniyada passiv +0.5 RBX ishlanadi.`);
+    }
+
+    function buyMaxEnergy() {
+      const price = 150;
+      if (state.balance < price) {
+        soundError();
+        alert(`Mablag' yetarli emas! Narxi: ${price} Robux`);
+        return;
+      }
+      state.balance -= price;
+      state.maxEnergy += 1000;
+      state.energy = state.maxEnergy;
+      soundUpgrade();
+      updateUI();
+      saveState();
+      alert(`Energiya sig'imi oshirildi! Yangi sig'im: ${state.maxEnergy}`);
+    }
+
+    // NAVIGATION TABS
+    function switchTab(tab) {
+      const tabs = ['game', 'shop', 'top10', 'minigames', 'giveaway'];
+      tabs.forEach(t => {
+        const view = document.getElementById(`view-${t}`);
+        const btn = document.getElementById(`tab-${t}`);
+        if (!view || !btn) return;
+        if (t === tab) {
+          view.classList.remove('hidden');
+          btn.className = 'py-2 rounded-xl text-[11px] sm:text-xs font-extrabold transition bg-emerald-500 text-slate-950 shadow-md';
+        } else {
+          view.classList.add('hidden');
+          btn.className = 'py-2 rounded-xl text-[11px] sm:text-xs font-extrabold transition text-slate-400 hover:text-white';
+        }
+      });
+      if (tab === 'top10') {
+        loadTop10();
+      }
+    }
+
+    // TOP 10 LEADERBOARD LOADER
+    async function loadTop10() {
+      const container = document.getElementById('top10ListContainer');
+      container.innerHTML = '<div class="text-center py-6 text-slate-400 text-xs">Yuklanmoqda...</div>';
+
+      let list = [
+        { rank: 1, robloxUsername: 'Bosi_Admin', totalMined: 48950, name: 'Abbos (Admin)' },
+        { rank: 2, robloxUsername: 'FastAbbos_RBX', totalMined: 36240, name: 'Fast Abbos' },
+        { rank: 3, robloxUsername: 'RobuxKing_UZ', totalMined: 28150, name: 'Robux King' },
+        { rank: 4, robloxUsername: 'Jasur_Gamer', totalMined: 19800, name: 'Jasur Pro' },
+        { rank: 5, robloxUsername: 'Shahzod_RBX', totalMined: 15420, name: 'Shahzod' },
+        { rank: 6, robloxUsername: 'Azizbek_NoobToPro', totalMined: 12300, name: 'Azizbek' },
+        { rank: 7, robloxUsername: 'Cyber_Uzbek', totalMined: 9800, name: 'Cyber Uzbek' },
+        { rank: 8, robloxUsername: 'Sardor_Blox99', totalMined: 7650, name: 'Sardor' },
+        { rank: 9, robloxUsername: 'Alisher_Pro777', totalMined: 5400, name: 'Alisher' },
+        { rank: 10, robloxUsername: 'Doston_Legend', totalMined: 3200, name: 'Dostonbek' },
+      ];
+
+      try {
+        const res = await fetch('/api/leaderboard');
+        if (res.ok) {
+          const data = await res.json();
+          if (data.top10 && data.top10.length > 0) {
+            list = data.top10;
+          }
+        }
+      } catch(e) {}
+
+      container.innerHTML = list.map((item, idx) => {
+        const rank = item.rank || (idx + 1);
+        const avatarUrl = item.avatarUrl || `https://api.dicebear.com/7.x/bottts/svg?seed=${encodeURIComponent(item.robloxUsername)}&backgroundColor=0f172a`;
+        let medal = `#${rank}`;
+        let borderClass = 'border-slate-800 bg-slate-900/60';
+        if (rank === 1) {
+          medal = '🥇';
+          borderClass = 'border-amber-400/60 bg-amber-500/10';
+        } else if (rank === 2) {
+          medal = '🥈';
+          borderClass = 'border-slate-400/60 bg-slate-800/40';
+        } else if (rank === 3) {
+          medal = '🥉';
+          borderClass = 'border-amber-700/60 bg-amber-900/20';
+        }
+
+        return `
+          <div class="flex items-center justify-between p-2.5 rounded-xl border ${borderClass}">
+            <div class="flex items-center gap-2.5 min-w-0">
+              <span class="w-6 text-center text-xs font-black">${medal}</span>
+              <img src="${avatarUrl}" class="w-8 h-8 rounded-lg border border-slate-700 object-cover shrink-0" alt="Avatar">
+              <div class="min-w-0">
+                <div class="text-xs font-bold text-white truncate">${item.robloxUsername}</div>
+                <div class="text-[10px] text-slate-400 truncate">${item.name || 'Roblox O\'yinchi'}</div>
+              </div>
+            </div>
+            <div class="text-right shrink-0">
+              <span class="text-xs font-mono font-black text-emerald-400">${Math.floor(item.totalMined).toLocaleString()}</span>
+              <span class="text-[10px] text-emerald-400/80 font-bold ml-1">R$</span>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // MINI GAMES: COINFLIP WITH 3D SPIN ANIMATION
+    let isFlippingNow = false;
+    function playCoinflip(bet) {
+      if (isFlippingNow) return;
+      if (state.balance < bet) {
+        soundError();
+        document.getElementById('coinflipResult').textContent = `Mablag' yetarli emas (Balansda kamida ${bet} RBX kerak)!`;
+        return;
+      }
+      state.balance -= bet;
+      updateUI();
+      saveState();
+
+      isFlippingNow = true;
+      const coinEl = document.getElementById('coinGraphic');
+      const resEl = document.getElementById('coinflipResult');
+      resEl.textContent = 'Tanga aylanmoqda...';
+      coinEl.classList.add('animate-coin-spin');
+      soundTap();
+
+      setTimeout(() => {
+        coinEl.classList.remove('animate-coin-spin');
+        isFlippingNow = false;
+        const win = Math.random() >= 0.5;
+        if (win) {
+          const prize = bet * 2;
+          state.balance += prize;
+          soundWin();
+          coinEl.textContent = '🪙';
+          resEl.innerHTML = `<span class="text-emerald-400 font-bold animate-modal-pop block">🎉 Tabriklaymiz! Burgut tushdi: +${prize} RBX!</span>`;
+        } else {
+          soundError();
+          coinEl.textContent = '🦅';
+          resEl.innerHTML = `<span class="text-rose-400 font-bold animate-modal-pop block">😔 Tushmadi. Siz ${bet} RBX yutqazdingiz.</span>`;
+        }
+        updateUI();
+        saveState();
+      }, 1200);
+    }
+
+    // MINI GAMES: CHEST WITH SUSPENSE SHAKE & BURST OPENING
+    let isOpeningChestNow = false;
+    function playChest(selected) {
+      if (isOpeningChestNow) return;
+      const bet = 25;
+      if (state.balance < bet) {
+        soundError();
+        document.getElementById('chestResult').textContent = `Sandiq ochish uchun 25 RBX kerak!`;
+        return;
+      }
+      state.balance -= bet;
+      updateUI();
+      saveState();
+
+      isOpeningChestNow = true;
+      const resEl = document.getElementById('chestResult');
+      resEl.textContent = `${selected}-sandiq ochilmoqda...`;
+
+      // Reset all chests visual
+      [1, 2, 3].forEach(i => {
+        const btn = document.getElementById(`chestBtn${i}`);
+        btn.classList.remove('animate-chest-shake', 'animate-chest-burst', 'border-amber-400', 'border-emerald-500');
+        document.getElementById(`chestIcon${i}`).textContent = '🎁';
+        document.getElementById(`chestSub${i}`).textContent = `${i}-Sandiq`;
+      });
+
+      // Add shake to chosen chest
+      const chosenBtn = document.getElementById(`chestBtn${selected}`);
+      chosenBtn.classList.add('animate-chest-shake', 'border-amber-400');
+      soundTap();
+
+      setTimeout(() => {
+        chosenBtn.classList.remove('animate-chest-shake');
+        chosenBtn.classList.add('animate-chest-burst', 'border-emerald-500');
+        isOpeningChestNow = false;
+
+        const lucky = Math.floor(Math.random() * 3) + 1;
+        if (selected === lucky) {
+          const prize = 75; // 3x
+          state.balance += prize;
+          soundWin();
+          document.getElementById(`chestIcon${selected}`).textContent = '💎';
+          document.getElementById(`chestSub${selected}`).textContent = '+75 RBX (3X)';
+          resEl.innerHTML = `<span class="text-emerald-400 font-bold animate-modal-pop block">🎁 AJOYIB! ${lucky}-sandiqdan +${prize} RBX chiqdi!</span>`;
+        } else {
+          soundError();
+          document.getElementById(`chestIcon${selected}`).textContent = '💨';
+          document.getElementById(`chestSub${selected}`).textContent = "Bo'sh (0X)";
+          // Reveal lucky chest
+          document.getElementById(`chestIcon${lucky}`).textContent = '💎';
+          document.getElementById(`chestSub${lucky}`).textContent = '3X Yutuq';
+          resEl.innerHTML = `<span class="text-slate-400 animate-modal-pop block">Bu sandiq bo'sh edi. Omadli sandiq: ${lucky}-raqamli edi.</span>`;
+        }
+        updateUI();
+        saveState();
+      }, 950);
+    }
+
+    // =========================================================
+    // WITHDRAW (YECHISH) FLOW
+    // =========================================================
+    let pendingRobloxUser = null;
+
+    function openWithdrawModal() {
+      document.getElementById('withdrawModal').classList.remove('hidden');
+      document.getElementById('modalUserBalance').textContent = state.balance.toFixed(2);
+      document.getElementById('withdrawErrorMsg').textContent = '';
+
+      if (state.robloxUser) {
+        pendingRobloxUser = state.robloxUser;
+        goToStep3();
+      } else {
+        backToStep1();
+      }
+    }
+
+    function closeWithdrawModal() {
+      document.getElementById('withdrawModal').classList.add('hidden');
+    }
+
+    function backToStep1() {
+      document.getElementById('wStep1').classList.remove('hidden');
+      document.getElementById('wStep2').classList.add('hidden');
+      document.getElementById('wStep3').classList.add('hidden');
+      document.getElementById('wStep4').classList.add('hidden');
+    }
+
+    async function searchRobloxAvatar() {
+      const nick = (document.getElementById('robloxInputNick').value || '').trim();
+      if (nick.length < 3) {
+        alert("Roblox nomini to'g'ri kiriting (kamida 3 belgi)!");
+        return;
+      }
+
+      let avatarUrl = `https://api.dicebear.com/7.x/bottts/svg?seed=${encodeURIComponent(nick)}&backgroundColor=0f172a`;
+      let displayName = nick;
+
+      try {
+        const res = await fetch(`/api/roblox/search?username=${encodeURIComponent(nick)}`);
+        const data = await res.json();
+        if (data && data.avatarUrl) {
+          avatarUrl = data.avatarUrl;
+        }
+        if (data && data.displayName) {
+          displayName = data.displayName;
+        }
+        if (data && data.alreadyClaimed) {
+          alert("Ushbu nikli odam saytda allaqachon mavjud!");
+          return;
+        }
+      } catch(e) {}
+
+      pendingRobloxUser = {
+        username: nick,
+        displayName: displayName,
+        avatarUrl: avatarUrl
+      };
+
+      document.getElementById('foundAvatarImg').src = avatarUrl;
+      document.getElementById('foundNickDisplay').textContent = nick;
+
+      soundUpgrade();
+      document.getElementById('wStep1').classList.add('hidden');
+      document.getElementById('wStep2').classList.remove('hidden');
+    }
+
+    function confirmAvatarSuccess() {
+      state.robloxUser = pendingRobloxUser;
+      saveState();
+      updateUI();
+      soundWin();
+      goToStep3();
+    }
+
+    function goToStep3() {
+      document.getElementById('wStep1').classList.add('hidden');
+      document.getElementById('wStep2').classList.add('hidden');
+      document.getElementById('wStep3').classList.remove('hidden');
+      document.getElementById('wStep4').classList.add('hidden');
+      document.getElementById('modalUserBalance').textContent = state.balance.toFixed(2);
+    }
+
+    function setWAmount(amt) {
+      document.getElementById('withdrawAmountInput').value = amt;
+    }
+
+    function submitFinalWithdraw() {
+      const amount = parseFloat(document.getElementById('withdrawAmountInput').value);
+      const errBox = document.getElementById('withdrawErrorMsg');
+      errBox.textContent = '';
+
+      if (isNaN(amount) || amount < 1000) {
+        soundError();
+        errBox.textContent = 'Minimal yechish miqdori 1,000 Robux!';
+        return;
+      }
+
+      if (amount > 100000000) {
+        soundError();
+        errBox.textContent = 'Maksimal yechish 100,000,000 Robux!';
+        return;
+      }
+
+      if (state.balance < amount) {
+        soundError();
+        errBox.textContent = `Balansingizda yetarli Robux yo'q! Hozirda: ${state.balance.toFixed(2)} RBX`;
+        return;
+      }
+
+      // Deduct balance and create withdrawal order
+      state.balance -= amount;
+      const order = {
+        id: 'w_' + Date.now(),
+        robloxNick: state.robloxUser ? state.robloxUser.username : 'Unknown',
+        amount: amount,
+        days: 20,
+        status: 'kutilmoqda (20 kunda)',
+        date: new Date().toLocaleDateString('uz-UZ')
+      };
+
+      state.withdrawals.unshift(order);
+      saveState();
+      updateUI();
+      soundWithdraw();
+
+      document.getElementById('wSuccessText').innerHTML = 
+        `<b>${amount.toLocaleString()} ROBUX</b> yechish arizasi qabul qilindi!<br>` +
+        `Roblox: <b>${order.robloxNick}</b><br>` +
+        `⏳ <b>20 kunda</b> guruhingiz orqali akkauntingizga tushiriladi.`;
+
+      document.getElementById('wStep3').classList.add('hidden');
+      document.getElementById('wStep4').classList.remove('hidden');
+    }
+
+    function renderWithdrawalsList() {
+      const listEl = document.getElementById('myWithdrawalsList');
+      if (!listEl) return;
+      if (!state.withdrawals || state.withdrawals.length === 0) {
+        listEl.innerHTML = `<div class="text-[11px] text-slate-500 italic">Hali arizalar berilmagan</div>`;
+        return;
+      }
+
+      listEl.innerHTML = state.withdrawals.map(w => `
+        <div class="flex items-center justify-between p-2 rounded-lg bg-slate-950 border border-slate-800 text-xs">
+          <div>
+            <span class="font-bold text-white">${w.amount.toLocaleString()} RBX</span>
+            <span class="text-[10px] text-slate-400 block">${w.robloxNick} • ${w.date}</span>
+          </div>
+          <span class="text-[10px] font-bold text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/20">
+            ⏳ ${w.status}
+          </span>
+        </div>
+      `).join('');
+    }
+
+    // INIT
+    updateUI();
+  </script>
+</body>
+</html>

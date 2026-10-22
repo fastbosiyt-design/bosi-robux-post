@@ -1,0 +1,123 @@
+{
+  "channels": [
+    {
+      "id": "ch_1",
+      "name": "Fast Abbos Chat",
+      "username": "@fastabbos_chat",
+      "inviteLink": "https://t.me/fastabbos_chat",
+      "required": true,
+      "rewardRobux": 250
+    },
+    {
+      "id": "ch_2",
+      "name": "BOSI TEKIN ROBUX",
+      "username": "@BOSI_TEKIN_ROBUX",
+      "inviteLink": "https://t.me/BOSI_TEKIN_ROBUX",
+      "required": true,
+      "rewardRobux": 300
+    }
+  ],
+  "linkedBroadcastChannels": [
+    "-1004366783173"
+  ],
+  "users": {
+    "99724777": {
+      "id": "usr_1792505904172_122",
+      "telegramId": "99724777",
+      "username": "roblox_player_881",
+      "firstName": "Roblox Player",
+      "balance": 718,
+      "totalMined": 808,
+      "energy": 1000,
+      "maxEnergy": 1000,
+      "tapPower": 2,
+      "autoMinerRate": 0,
+      "lastEnergyRefill": 1792506553508,
+      "dailyStreak": 1,
+      "completedTasks": [
+        "ch_1",
+        "ch_2"
+      ],
+      "referralCount": 0,
+      "joinedAt": "2026-10-20T14:18:24.172Z",
+      "lastDailyClaim": "2026-10-20"
+    },
+    "6877691664": {
+      "id": "usr_1792506398092_355",
+      "telegramId": "6877691664",
+      "username": "Thebosi",
+      "firstName": "#BOSI",
+      "balance": 100,
+      "totalMined": 100,
+      "energy": 1000,
+      "maxEnergy": 1000,
+      "tapPower": 1,
+      "autoMinerRate": 0,
+      "lastEnergyRefill": 1792506398092,
+      "dailyStreak": 0,
+      "completedTasks": [],
+      "referralCount": 0,
+      "joinedAt": "2026-10-20T14:26:38.092Z"
+    },
+    "8762392478": {
+      "id": "usr_1792506612184_157",
+      "telegramId": "8762392478",
+      "username": "Vip_BOSI",
+      "firstName": "#БОСИ",
+      "balance": 10,
+      "totalMined": 10,
+      "energy": 1000,
+      "maxEnergy": 1000,
+      "tapPower": 0.1,
+      "tapUpgradeLevel": 0,
+      "autoMinerRate": 0,
+      "lastEnergyRefill": 1792506612184,
+      "dailyStreak": 0,
+      "completedTasks": [],
+      "referralCount": 0,
+      "joinedAt": "2026-10-20T14:30:12.184Z",
+      "hasAskedHelp": false,
+      "joinedGiveaway": true
+    }
+  },
+  "withdrawals": [],
+  "robloxAccountsMap": {},
+  "giveaway": {
+    "targetDate": "2026-10-25T15:00:00.000Z",
+    "prizePerWinner": 10000,
+    "winnersCount": 3,
+    "pastWinners": [
+      {
+        "telegramId": "9920192",
+        "robloxUsername": "BosiPro_99",
+        "name": "Azizbek",
+        "wonAt": "O'tgan yakshanba",
+        "prize": 10000
+      },
+      {
+        "telegramId": "8839210",
+        "robloxUsername": "RobuxKing_UZ",
+        "name": "Jasur",
+        "wonAt": "O'tgan yakshanba",
+        "prize": 10000
+      },
+      {
+        "telegramId": "7728193",
+        "robloxUsername": "FastNinja_RBX",
+        "name": "Shahzod",
+        "wonAt": "O'tgan yakshanba",
+        "prize": 10000
+      }
+    ]
+  },
+  "settings": {
+    "minWithdrawal": 1000,
+    "referralRewardInviter": 100,
+    "referralRewardFriend": 50,
+    "dailyStreakBase": 50,
+    "baseEnergy": 1000,
+    "energyRefillRatePerSec": 3,
+    "baseTapPower": 0.1,
+    "baseUpgradePrice": 100
+  }
+}

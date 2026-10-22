@@ -1,0 +1,87 @@
+@import "tailwindcss";
+
+@keyframes chest-shake {
+  0%, 100% { transform: rotate(0deg) scale(1); }
+  15% { transform: rotate(-10deg) scale(1.08) translateY(-4px); }
+  30% { transform: rotate(10deg) scale(1.12) translateY(-6px); }
+  45% { transform: rotate(-8deg) scale(1.15) translateY(-8px); }
+  60% { transform: rotate(8deg) scale(1.18) translateY(-8px); }
+  75% { transform: rotate(-4deg) scale(1.12) translateY(-4px); }
+  90% { transform: rotate(4deg) scale(1.06) translateY(-2px); }
+}
+
+@keyframes chest-burst {
+  0% { transform: scale(0.6) translateY(20px); opacity: 0; filter: blur(4px); }
+  50% { transform: scale(1.15) translateY(-12px); opacity: 1; filter: blur(0px); }
+  100% { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+@keyframes sunburst-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes float-rbx {
+  0% { transform: translateY(0px) scale(0.85); opacity: 1; }
+  60% { transform: translateY(-40px) scale(1.15); opacity: 1; }
+  100% { transform: translateY(-70px) scale(1.05); opacity: 0; }
+}
+
+@keyframes coin-3d-spin {
+  0% { transform: perspective(800px) rotateY(0deg) scale(1); }
+  50% { transform: perspective(800px) rotateY(900deg) scale(1.22); }
+  100% { transform: perspective(800px) rotateY(1800deg) scale(1); }
+}
+
+@keyframes coin-land-bounce {
+  0% { transform: scale(1.25) translateY(-20px); }
+  50% { transform: scale(0.92) translateY(6px); }
+  75% { transform: scale(1.06) translateY(-2px); }
+  100% { transform: scale(1) translateY(0); }
+}
+
+@keyframes modal-pop {
+  0% { transform: scale(0.93) translateY(8px); opacity: 0; }
+  100% { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+@keyframes pulse-glow-gold {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(234, 179, 8, 0.4), inset 0 0 15px rgba(234, 179, 8, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 35px rgba(234, 179, 8, 0.8), inset 0 0 25px rgba(234, 179, 8, 0.5);
+  }
+}
+
+.animate-chest-shake {
+  animation: chest-shake 0.85s infinite ease-in-out;
+}
+
+.animate-chest-burst {
+  animation: chest-burst 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.animate-sunburst {
+  animation: sunburst-spin 8s linear infinite;
+}
+
+.animate-float-rbx {
+  animation: float-rbx 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-coin-flip {
+  animation: coin-3d-spin 1.4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+.animate-coin-land {
+  animation: coin-land-bounce 0.45s ease-out forwards;
+}
+
+.animate-modal-pop {
+  animation: modal-pop 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-pulse-gold {
+  animation: pulse-glow-gold 1.5s infinite ease-in-out;
+}
